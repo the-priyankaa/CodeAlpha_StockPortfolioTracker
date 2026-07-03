@@ -3,4 +3,19 @@ import datetime
 import yfinance as yf
 import plotly.graph_objects as go 
 
+#store current_datetime
+current_time = datetime.datetime.now()
 
+#add list for store data
+total_stock_values = []
+stock_names = [] 
+
+#add class
+class stock_Portfolio():
+
+    #add functions
+    def get_stock_value(interval ='30m'):
+
+        #define num_stocks as global variable
+        global num_stocks
+        num_stocks = int(input("Hey!!How many stocks do you have?? "))
