@@ -1,21 +1,30 @@
-#imprt library
-import datetime
-import yfinance as yf
-import plotly.graph_objects as go 
+# Dictionary containing predefined stock prices
+stock_prices = {"AAPL": 180, "TSLA": 250, "GOOGL": 140, "AMZN": 145, "MSFT": 330}
 
-#store current_datetime
-current_time = datetime.datetime.now()
+# Dictionary to store the user's stock holdings
+portfolio = {}
 
-#add list for store data
-total_stock_values = []
-stock_names = [] 
+# Ask the user to enter stock holdings
+print("Enter stock holdings (leave stock name empty to finish):")
 
-#add class
-class stock_Portfolio():
+# Continue taking input until the user presses Enter without typing a stock name
+while True:
 
-    #add functions
-    def get_stock_value(interval ='30m'):
+    # Get stock name from the user and convert it to uppercase
+    name = input("Stock name (e.g. AAPL): ").strip().upper()
 
-        #define num_stocks as global variable
-        global num_stocks
-        num_stocks = int(input("Hey!!How many stocks do you have?? "))
+    # Stop taking input if the stock name is empty
+    if not name:
+        break
+
+    # Get the quantity of shares for the entered stock
+    qty = input(f"Quantity of {name}: ").strip()
+
+    # Check whether the quantity is a valid integer
+    try:
+        qty = int(qty)
+
+    # Display an error message if the quantity is invalid
+    except ValueError:
+        print("Invalid quantity, skipping.")
+        continue
