@@ -28,3 +28,40 @@ while True:
     except ValueError:
         print("Invalid quantity, skipping.")
         continue
+    
+    # Add the quantity to the portfolio dictionary
+    # If the stock already exists, update its quantity
+    portfolio[name] = portfolio.get(name, 0) + qty
+
+# Variable to store the total investment value
+total = 0
+
+# Display the portfolio summary
+print("\n=== Portfolio Summary ===")
+
+# Loop through each stock in the portfolio
+for name, qty in portfolio.items():
+
+    # Get the stock price from the predefined dictionary
+    price = stock_prices.get(name)
+
+    # Skip the stock if its price is not available
+    if price is None:
+        print(f"{name}: {qty} shares (price unknown, skipping)")
+        continue
+
+    # Skip the stock if its price is not available
+    sub_total = price * qty
+
+    # Add the stock value to the total investment
+    total += sub_total
+
+    # Display stock details
+    print(f"{name}: {qty} shares @ ${price} = ${sub_total:,.2f}")
+
+# Display the total investment value
+print(f"\nTotal investment value: ${total:,.2f}")
+
+# Display the total investment value
+save = input("\nSave to file? (txt/csv/n): ").strip().lower()
+
