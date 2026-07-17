@@ -65,3 +65,33 @@ print(f"\nTotal investment value: ${total:,.2f}")
 # Display the total investment value
 save = input("\nSave to file? (txt/csv/n): ").strip().lower()
 
+# Save the portfolio summary as a text file
+if save == "txt":
+
+    with open("portfolio.txt", "w") as f:
+
+        f.write(f"Total investment value: ${total:,.2f}\n")
+
+    print("Saved to portfolio.txt")
+
+# Save the portfolio details as a CSV file
+elif save == "csv":
+
+    with open("portfolio.csv", "w") as f:
+
+        # Write the CSV header
+        f.write("Stock,Quantity,Price,Subtotal\n")
+
+        # Write each stock's details to the CSV file
+        for name, qty in portfolio.items():
+
+            price = stock_prices.get(name, 0)
+
+            f.write(f"{name},{qty},{price},{price * qty}\n")
+
+    print("Saved to portfolio.csv")
+
+# If the user chooses not to save the file
+else:
+    
+    print("Not saved.")
